@@ -1,13 +1,20 @@
 const { Schema, model } = require('mongoose')
 
-const BirdSchema = new Schema({
+const User = new Schema({
   name: String,
   age: Number,
   breed: String,
-  user: {
+  bird: [{
     type: Schema.Types.ObjectId,
     ref: 'user',
     required: true
-  }
+  }],
+  cat: [{
+    type: Schema.Types.ObjectId,
+    ref: 'user',
+    required: true
+  }]
 })
-module.exports = model('bird', Bird)
+
+module.exports = model('user', User)
+
