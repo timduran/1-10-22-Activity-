@@ -1,9 +1,18 @@
 const { Schema, model } = require('mongoose')
 
-const CatSchema = new Schema({
-  name: String,
-  age: Number,
-  breed: String,
+const Cat = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: true
+  },
+  breed: {
+    type: String,
+    required: true
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user',

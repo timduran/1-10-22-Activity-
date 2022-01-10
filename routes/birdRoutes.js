@@ -15,7 +15,7 @@ router.get('/bird/:id', async function (req, res) {
 
 // POST one bird
 router.post('/bird', async function (req, res) {
-  const bird = await Bird.create(req.body.user, {$push: {bird: bird_id} })
+  const bird = await Bird.create(req.body.user, { $push: { birds: bird._id } })
   res.json(bird)
 })
 

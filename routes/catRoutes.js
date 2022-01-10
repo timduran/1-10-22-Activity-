@@ -16,7 +16,7 @@ router.get('/cat/:id', async function (req, res) {
 // POST one cat
 router.post('/cat', async function (req, res) {
   const cat = await Cat.create(req.body)
-  await Owner.findByIdAndUpdate(req.body.user, { $push: { cat: cat._id } })
+  await Owner.findByIdAndUpdate(req.body.user, { $push: { cats: cat._id } })
   res.json(cat)
 })
 
