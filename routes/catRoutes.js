@@ -1,21 +1,22 @@
 const router = require('express').Router()
-const { Cat } = require('../models')
+const { Cat, Owner } = require('../models')
 
 // GET all cat
 router.get('/cat', async function (req, res) {
-  const cat = await Cat.find({})
+  const cat = await Cat.find({}).populate('user')
   res.json(cat)
 })
 
 // GET one cat by id
 router.get('/cat/:id', async function (req, res) {
-  const cat = await Cat.findById(req.params.id)
+  const cat = await Cat.findById(req.params.id).populate('user')
   res.json(cat)
 })
 
 // POST one cat
 router.post('/cat', async function (req, res) {
-  const cat = await Catat.create(req.body)
+  const cat = await Cat.create(req.body)
+  await Owner.findByIdAndUpdate(req.body.user, { $push: { cat: cat._id } })
   res.json(cat)
 })
 
